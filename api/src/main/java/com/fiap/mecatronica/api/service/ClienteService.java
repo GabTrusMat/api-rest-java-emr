@@ -1,7 +1,7 @@
-package com.fiap.mecatronica.service;
+package com.fiap.mecatronica.api.service;
 
-import com.fiap.mecatronica.model.Cliente;
-import com.fiap.mecatronica.repository.ClienteRepository;
+import com.fiap.mecatronica.api.model.Cliente;
+import com.fiap.mecatronica.api.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,11 @@ public class ClienteService {
         return repository.existsById(id);
     }
 
-    public void excluirCliente(Long id) {
-        repository.deleteById(id);
+    public boolean excluirCliente(Long id) {
+        if (repository.existsById(id)) { // Verifica a existencia do cliente pelo seu ID
+            repository.deleteById(id); // Deleta o cliente
+            return true; // Indica que foi excluído com sucesso
+        }
+        return false; // Indica que o cliente não foi encontrado
     }
 }

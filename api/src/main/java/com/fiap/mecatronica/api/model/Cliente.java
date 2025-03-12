@@ -1,4 +1,4 @@
-package com.fiap.mecatronica.model;
+package com.fiap.mecatronica.api.model;
 
 import jakarta.persistence.*;
 
